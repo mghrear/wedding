@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <g stroke="#61674B" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- left branch -->
+    <path d="M30 100c-6-20-2-42 10-58" />
+    <path d="M28 95c-8-2-14-8-16-16" />
+    <path d="M27 108c-9 1-17-3-22-10" />
+    <path d="M33 82c-8-1-15-6-18-13" />
+    <path d="M38 68c-7 0-13-4-16-10" />
+    <path d="M46 55c-6 1-12-2-15-7" />
+    <!-- right branch (mirrored) -->
+    <path d="M170 100c6-20 2-42-10-58" />
+    <path d="M172 95c8-2 14-8 16-16" />
+    <path d="M173 108c9 1 17-3 22-10" />
+    <path d="M167 82c8-1 15-6 18-13" />
+    <path d="M162 68c7 0 13-4 16-10" />
+    <path d="M154 55c6 1 12-2 15-7" />
+    <!-- bottom sprigs -->
+    <path d="M70 168c10 8 22 12 30 12s20-4 30-12" />
+    <path d="M78 172c-2 6-8 10-14 10" />
+    <path d="M122 172c2 6 8 10 14 10" />
+  </g>
+</svg>

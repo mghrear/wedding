@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo Gallery — Amabel & Majd</title>
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">A &amp; M</a>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="index.html">Welcome</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="travel.html">Travel &amp; Stay</a></li>
+      <li><a href="things-to-do.html">Things To Do</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="rsvp.html">RSVP</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" style="padding-bottom:1rem;">
+    <span class="eyebrow">Moments</span>
+    <h1 style="font-size:clamp(2.2rem,5vw,3.2rem);">Photo Gallery</h1>
+  </section>
+
+  <div class="divider"><img src="images/divider.svg" alt=""></div>
+
+  <section class="block">
+    <div class="container">
+      <div class="note-box">
+        <strong>Editor's note:</strong> this page has placeholder tiles. To add real photos,
+        drop image files into the <code>images/gallery/</code> folder and replace each
+        <code>&lt;figure&gt;</code> below with an <code>&lt;img src="images/gallery/yourphoto.jpg"&gt;</code> —
+        the lightbox click-to-enlarge already works for any image you add.
+      </div>
+
+      <div class="gallery-grid">
+        <figure><div class="gallery-placeholder">Add photo 1</div></figure>
+        <figure><div class="gallery-placeholder">Add photo 2</div></figure>
+        <figure><div class="gallery-placeholder">Add photo 3</div></figure>
+        <figure><div class="gallery-placeholder">Add photo 4</div></figure>
+        <figure><div class="gallery-placeholder">Add photo 5</div></figure>
+        <figure><div class="gallery-placeholder">Add photo 6</div></figure>
+        <figure><div class="gallery-placeholder">Add photo 7</div></figure>
+        <figure><div class="gallery-placeholder">Add photo 8</div></figure>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="lightbox">
+  <span class="lightbox-close">&times;</span>
+  <img src="" alt="">
+</div>
+
+<footer class="site-footer">
+  <div class="footer-names">Amabel &amp; Majd</div>
+  <p>March 25, 2027 &middot; Natsunoyah Tea House, Honolulu, Hawai&rsquo;i</p>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
