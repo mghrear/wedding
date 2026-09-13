@@ -1,22 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
-  <g stroke="#61674B" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none">
-    <!-- left branch -->
-    <path d="M30 100c-6-20-2-42 10-58" />
-    <path d="M28 95c-8-2-14-8-16-16" />
-    <path d="M27 108c-9 1-17-3-22-10" />
-    <path d="M33 82c-8-1-15-6-18-13" />
-    <path d="M38 68c-7 0-13-4-16-10" />
-    <path d="M46 55c-6 1-12-2-15-7" />
-    <!-- right branch (mirrored) -->
-    <path d="M170 100c6-20 2-42-10-58" />
-    <path d="M172 95c8-2 14-8 16-16" />
-    <path d="M173 108c9 1 17-3 22-10" />
-    <path d="M167 82c8-1 15-6 18-13" />
-    <path d="M162 68c7 0 13-4 16-10" />
-    <path d="M154 55c6 1 12-2 15-7" />
-    <!-- bottom sprigs -->
-    <path d="M70 168c10 8 22 12 30 12s20-4 30-12" />
-    <path d="M78 172c-2 6-8 10-14 10" />
-    <path d="M122 172c2 6 8 10 14 10" />
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" fill="none">
+  <defs>
+    <g id="monstera">
+      <path fill="#61674B" d="
+        M0,0
+        L-6,-3
+        C-15,-2 -22,-9 -17,-15
+        C-15,-18 -9,-17 -12,-21
+        C-22,-26 -29,-35 -23,-42
+        C-20,-46 -13,-44 -15,-49
+        C-21,-55 -22,-63 -13,-67
+        C-9,-70 -4,-72 0,-77
+        C4,-72 9,-70 13,-67
+        C22,-63 21,-55 15,-49
+        C13,-44 20,-46 23,-42
+        C29,-35 22,-26 12,-21
+        C9,-17 15,-18 17,-15
+        C22,-9 15,-2 6,-3
+        L0,0
+        Z"/>
+      <path stroke="#fbfaf6" stroke-width="1.1" stroke-linecap="round"
+            d="M0,-3 C0,-25 0,-50 0,-73" opacity="0.55"/>
+    </g>
+    <path id="blade" fill="#61674B" d="M0,0 C-3,-24 -4,-48 0,-72 C4,-48 3,-24 0,0 Z"/>
+    <g id="frond">
+      <use href="#blade" transform="rotate(-48) scale(0.68)"/>
+      <use href="#blade" transform="rotate(-24) scale(0.86)"/>
+      <use href="#blade" transform="rotate(0) scale(1)"/>
+      <use href="#blade" transform="rotate(24) scale(0.86)"/>
+      <use href="#blade" transform="rotate(48) scale(0.68)"/>
+    </g>
+    <g id="side">
+      <use href="#frond" transform="translate(58,230) rotate(-64) scale(0.92)"/>
+      <use href="#monstera" transform="translate(70,167) rotate(-42) scale(1.1)"/>
+      <use href="#monstera" transform="translate(101,107) rotate(-16) scale(0.9)"/>
+      <use href="#monstera" transform="translate(123,62) rotate(6) scale(0.65)"/>
+    </g>
+  </defs>
+
+  <use href="#side"/>
+  <use href="#side" transform="translate(260,0) scale(-1,1)"/>
+
+  <use href="#monstera" transform="translate(116,248) rotate(-22) scale(0.5)"/>
+  <use href="#monstera" transform="translate(144,248) rotate(22) scale(0.5)"/>
 </svg>
