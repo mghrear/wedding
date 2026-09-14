@@ -355,6 +355,16 @@ section.block.alt {
 .timeline-item h3 { margin: 0.15rem 0 0.3rem; }
 .timeline-item p { color: var(--ink-soft); margin-bottom: 0; }
 
+.timeline-subhead {
+  max-width: 640px;
+  margin: 0 auto 1rem;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--sage-dark);
+}
+
 /* ---------- FAQ accordion ---------- */
 
 .faq-list { max-width: 720px; margin: 0 auto; }
