@@ -170,6 +170,15 @@ p { margin: 0 0 1em; }
   margin-bottom: 0.3rem;
 }
 
+.hero h1.hero-names {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: baseline;
+}
+
+.hero-names .name-left { text-align: right; }
+.hero-names .name-right { text-align: left; }
+
 .hero .names-sep {
   color: var(--sage-light);
   font-style: italic;
