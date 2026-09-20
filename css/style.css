@@ -168,12 +168,12 @@ p { margin: 0 0 1em; }
 
 .hero-decorated {
   position: relative;
-  overflow: hidden;
 }
 
 .hero-decor {
   position: absolute;
-  width: clamp(390px, 60vw, 740px);
+  width: 740px;
+  max-width: none;
   height: auto;
   opacity: 0.85;
   pointer-events: none;
@@ -182,17 +182,13 @@ p { margin: 0 0 1em; }
 
 .hero-decor-right {
   top: -0.5rem;
-  right: 30rem;
+  left: 60px;
   transform: scaleX(-1);
 }
 
 .hero-decorated > *:not(.hero-decor) {
   position: relative;
   z-index: 1;
-}
-
-@media (max-width: 640px) {
-  .hero-decor { width: 150px; opacity: 0.6; }
 }
 
 .hero h1 {
@@ -242,12 +238,13 @@ p { margin: 0 0 1em; }
 .divider img { height: 22px; width: auto; opacity: 0.85; }
 
 .divider-floral {
-  max-width: 800px;
+  width: 800px;
+  max-width: none;
   margin-top: -3rem;
 }
 .divider-floral img {
   height: auto;
-  width: 100%;
+  width: 800px;
   opacity: 0.9;
 }
 
