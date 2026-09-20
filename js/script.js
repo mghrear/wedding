@@ -53,6 +53,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // RSVP form — submits to Google Forms via a hidden iframe so the page
+  // never navigates away, then swaps in a thank-you message.
+  const rsvpForm = document.getElementById('rsvp-form');
+  const rsvpFrame = document.querySelector('iframe[name="rsvp-hidden-frame"]');
+  const rsvpThanks = document.getElementById('rsvp-thanks');
+  if (rsvpForm && rsvpFrame && rsvpThanks) {
+    let submitted = false;
+    rsvpForm.addEventListener('submit', () => {
+      submitted = true;
+      const btn = rsvpForm.querySelector('button[type="submit"]');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+      }
+    });
+    rsvpFrame.addEventListener('load', () => {
+      if (!submitted) return;
+      rsvpForm.style.display = 'none';
+      rsvpThanks.classList.add('show');
+    });
+  }
+
   // Gallery lightbox
   const lightbox = document.querySelector('.lightbox');
   if (lightbox) {
