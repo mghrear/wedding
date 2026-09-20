@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const rsvpThanks = document.getElementById('rsvp-thanks');
   const rsvpError = document.getElementById('rsvp-error');
   if (rsvpForm) {
-    const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwOcQHhaDZdAwy_Z1acqFo6t5zRBubh_e8KsAvAQ_FAQpMYdUX8SqpjPVPe-z2Y9XO_/exec';
+    const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyfDzGFRvOr2eibRs3pDUGK34VdhyVPHco6enFK9VBb2m2YFZUSCn8hlLwhKo5uGlqP/exec';
     const submitBtn = rsvpForm.querySelector('button[type="submit"]');
 
     rsvpForm.addEventListener('submit', (event) => {
@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = new FormData(rsvpForm);
       const params = new URLSearchParams();
       params.set('name', data.get('name') || '');
+      params.set('email', data.get('email') || '');
       params.set('attending', data.get('attending') || '');
       params.set('total', data.get('total') || '');
       params.set('guests', data.get('guests') || '');
