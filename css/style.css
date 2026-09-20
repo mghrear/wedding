@@ -239,13 +239,13 @@ p { margin: 0 0 1em; }
 .divider img { height: 22px; width: auto; opacity: 0.85; }
 
 .divider-floral {
-  width: 800px;
+  width: min(800px, 90vw);
   max-width: none;
   margin-top: -3rem;
 }
 .divider-floral img {
   height: auto;
-  width: 800px;
+  width: 100%;
   opacity: 0.9;
 }
 
