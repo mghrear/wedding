@@ -53,6 +53,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // RSVP form — submits to a Google Apps Script Web App tied to the
+  // response sheet. Unlike a raw Google Form embed, this endpoint returns
+  // a real, readable JSON response, so success/failure is genuinely known.
+  const rsvpForm = document.getElementById('rsvp-form');
+  const rsvpThanks = document.getElementById('rsvp-thanks');
+  const rsvpError = document.getElementById('rsvp-error');
+  if (rsvpForm) {
+    const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwOcQHhaDZdAwy_Z1acqFo6t5zRBubh_e8KsAvAQ_FAQpMYdUX8SqpjPVPe-z2Y9XO_/exec';
+    const submitBtn = rsvpForm.querySelector('button[type="submit"]');
+
+    rsvpForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (rsvpError) rsvpError.classList.remove('show');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+      }
+
+      const data = new FormData(rsvpForm);
+      const params = new URLSearchParams();
+      params.set('name', data.get('name') || '');
+      params.set('attending', data.get('attending') || '');
+      params.set('total', data.get('total') || '');
+      params.set('guests', data.get('guests') || '');
+
+      fetch(RSVP_ENDPOINT, { method: 'POST', body: params })
+        .then((res) => res.json())
+        .then((result) => {
+          if (!result || result.result !== 'success') {
+            throw new Error((result && result.message) || 'Unexpected response');
+          }
+          rsvpForm.style.display = 'none';
+          if (rsvpThanks) rsvpThanks.classList.add('show');
+        })
+        .catch(() => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send RSVP';
+          }
+          if (rsvpError) rsvpError.classList.add('show');
+        });
+    });
+  }
+
   // Gallery lightbox
   const lightbox = document.querySelector('.lightbox');
   if (lightbox) {

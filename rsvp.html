@@ -37,18 +37,74 @@
     <div class="container">
       <p class="lede">Please let us know if you'll be able to join us by filling out the form below.</p>
 
-      <div class="form-frame">
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLSfCvmqYbxXYn_etiD_I94_SwPahhJHCh47h_wKF2Yb3hMLqTg/viewform?embedded=true"
-          loading="lazy">Loading&hellip;</iframe>
-      </div>
+      <div class="rsvp-panel">
+        <form id="rsvp-form">
 
-      <p class="venue-address">
-        Trouble viewing the form?
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfCvmqYbxXYn_etiD_I94_SwPahhJHCh47h_wKF2Yb3hMLqTg/viewform" target="_blank" rel="noopener">
-          Open it in a new tab &rarr;
-        </a>
-      </p>
+          <div class="rsvp-field">
+            <label class="rsvp-field-label" for="rsvp-name">Full Name</label>
+            <input type="text" id="rsvp-name" name="name" autocomplete="name" required>
+          </div>
+
+          <div class="rsvp-field">
+            <span class="rsvp-field-label">Will You Be Attending?</span>
+            <div class="choice-group">
+              <span class="choice">
+                <input type="radio" id="attend-yes" name="attending" value="Joyfully Accepts" required>
+                <label for="attend-yes">Joyfully Accepts</label>
+              </span>
+              <span class="choice">
+                <input type="radio" id="attend-no" name="attending" value="Regretfully Declines">
+                <label for="attend-no">Regretfully Declines</label>
+              </span>
+            </div>
+          </div>
+
+          <div class="rsvp-field">
+            <span class="rsvp-field-label">Total Attending</span>
+            <div class="choice-group">
+              <span class="choice">
+                <input type="radio" id="total-1" name="total" value="1" required>
+                <label for="total-1">1</label>
+              </span>
+              <span class="choice">
+                <input type="radio" id="total-2" name="total" value="2">
+                <label for="total-2">2</label>
+              </span>
+              <span class="choice">
+                <input type="radio" id="total-3" name="total" value="3">
+                <label for="total-3">3</label>
+              </span>
+              <span class="choice">
+                <input type="radio" id="total-4" name="total" value="4">
+                <label for="total-4">4</label>
+              </span>
+              <span class="choice">
+                <input type="radio" id="total-5" name="total" value="5">
+                <label for="total-5">5</label>
+              </span>
+            </div>
+            <p class="rsvp-hint">Contact us directly for plus ones not listed on your invitation.</p>
+          </div>
+
+          <div class="rsvp-field">
+            <label class="rsvp-field-label" for="rsvp-guests">Names of Additional Guests Attending</label>
+            <textarea id="rsvp-guests" name="guests"></textarea>
+          </div>
+
+          <div class="rsvp-submit-row">
+            <button type="submit" class="btn btn-solid">Send RSVP</button>
+          </div>
+
+          <div class="rsvp-error note-box" id="rsvp-error">
+            Something went wrong sending your RSVP. Please try again, or email us directly so we don&rsquo;t miss you.
+          </div>
+        </form>
+
+        <div class="rsvp-thanks" id="rsvp-thanks">
+          <h3>Thank you!</h3>
+          <p>Your RSVP has been received. We can&rsquo;t wait to celebrate with you.</p>
+        </div>
+      </div>
     </div>
   </section>
 </main>
