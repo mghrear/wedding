@@ -46,7 +46,7 @@ h1, h2, h3, h4 {
   letter-spacing: 0.02em;
 }
 
-h1 { font-size: clamp(2.6rem, 6vw, 4.4rem); }
+h1 { font-size: var(--name-size, clamp(2.6rem, 6vw, 4.4rem)); }
 h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); text-align: center; }
 h3 { font-size: 1.5rem; }
 
@@ -168,11 +168,12 @@ p { margin: 0 0 1em; }
 
 .hero-decorated {
   position: relative;
+  --name-size: clamp(2.6rem, 6vw, 4.4rem);
 }
 
 .hero-decor {
   position: absolute;
-  width: 740px;
+  width: calc(var(--name-size) * 10.5);
   max-width: none;
   height: auto;
   opacity: 0.85;
@@ -182,7 +183,7 @@ p { margin: 0 0 1em; }
 
 .hero-decor-right {
   top: -0.5rem;
-  left: 60px;
+  left: calc(var(--name-size) * 0.85);
   transform: scaleX(-1);
 }
 
