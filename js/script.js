@@ -65,16 +65,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalField = document.getElementById('rsvp-total-field');
     const totalInputs = rsvpForm.querySelectorAll('input[name="total"]');
     const attendingInputs = rsvpForm.querySelectorAll('input[name="attending"]');
+    const guestNamesField = document.getElementById('rsvp-guest-names-field');
+    const guestNamesInput = document.getElementById('rsvp-guests');
 
-    // Declining guests don't need a headcount — hide the question and
-    // stop requiring an answer to it.
-    const syncTotalField = () => {
+    // Declining guests don't need a headcount or a guest list — hide those
+    // questions and stop requiring/collecting answers for them.
+    const syncDeclineFields = () => {
       const declined = rsvpForm.querySelector('input[name="attending"]:checked')?.value === 'Regretfully Declines';
       if (totalField) totalField.style.display = declined ? 'none' : '';
       totalInputs.forEach((input) => { input.required = !declined; });
+      if (guestNamesField) guestNamesField.style.display = declined ? 'none' : '';
+      if (guestNamesInput && declined) guestNamesInput.value = '';
     };
-    attendingInputs.forEach((input) => input.addEventListener('change', syncTotalField));
-    syncTotalField();
+    attendingInputs.forEach((input) => input.addEventListener('change', syncDeclineFields));
+    syncDeclineFields();
 
     rsvpForm.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -91,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
       params.set('email', data.get('email') || '');
       params.set('attending', data.get('attending') || '');
       params.set('total', declined ? '1' : (data.get('total') || ''));
-      params.set('guests', data.get('guest_names') || '');
+      params.set('guests', declined ? '' : (data.get('guest_names') || ''));
 
       fetch(RSVP_ENDPOINT, { method: 'POST', body: params })
         .then((res) => res.json())
