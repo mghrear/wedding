@@ -62,6 +62,19 @@ document.addEventListener('DOMContentLoaded', () => {
   if (rsvpForm) {
     const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyfDzGFRvOr2eibRs3pDUGK34VdhyVPHco6enFK9VBb2m2YFZUSCn8hlLwhKo5uGlqP/exec';
     const submitBtn = rsvpForm.querySelector('button[type="submit"]');
+    const totalField = document.getElementById('rsvp-total-field');
+    const totalInputs = rsvpForm.querySelectorAll('input[name="total"]');
+    const attendingInputs = rsvpForm.querySelectorAll('input[name="attending"]');
+
+    // Declining guests don't need a headcount — hide the question and
+    // stop requiring an answer to it.
+    const syncTotalField = () => {
+      const declined = rsvpForm.querySelector('input[name="attending"]:checked')?.value === 'Regretfully Declines';
+      if (totalField) totalField.style.display = declined ? 'none' : '';
+      totalInputs.forEach((input) => { input.required = !declined; });
+    };
+    attendingInputs.forEach((input) => input.addEventListener('change', syncTotalField));
+    syncTotalField();
 
     rsvpForm.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -72,12 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const data = new FormData(rsvpForm);
+      const declined = data.get('attending') === 'Regretfully Declines';
       const params = new URLSearchParams();
       params.set('name', data.get('name') || '');
       params.set('email', data.get('email') || '');
       params.set('attending', data.get('attending') || '');
-      params.set('total', data.get('total') || '');
-      params.set('guests', data.get('guests') || '');
+      params.set('total', declined ? '1' : (data.get('total') || ''));
+      params.set('guests', data.get('guest_names') || '');
 
       fetch(RSVP_ENDPOINT, { method: 'POST', body: params })
         .then((res) => res.json())
