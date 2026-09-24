@@ -67,6 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const attendingInputs = rsvpForm.querySelectorAll('input[name="attending"]');
     const guestNamesField = document.getElementById('rsvp-guest-names-field');
     const guestNamesInput = document.getElementById('rsvp-guests');
+    const RSVP_TIMEOUT_MS = 30000;
+    const RSVP_TIMEOUT_MESSAGE = 'This is taking longer than expected. Your RSVP may not have gone through. '
+      + 'Please try again or email us to confirm.';
+    const rsvpErrorDefault = rsvpError ? rsvpError.textContent.trim() : '';
 
     // Declining guests don't need a headcount or a guest list — hide those
     // questions and stop requiring/collecting answers for them.
@@ -97,7 +101,15 @@ document.addEventListener('DOMContentLoaded', () => {
       params.set('total', declined ? '1' : (data.get('total') || ''));
       params.set('guests', declined ? '' : (data.get('guest_names') || ''));
 
-      fetch(RSVP_ENDPOINT, { method: 'POST', body: params })
+      // Never leave guests stuck on "Sending…": let them know when it's slow,
+      // and give up after RSVP_TIMEOUT_MS so they can retry (duplicates are fine).
+      const controller = new AbortController();
+      const slowTimer = setTimeout(() => {
+        if (submitBtn) submitBtn.textContent = 'Still sending…';
+      }, 6000);
+      const abortTimer = setTimeout(() => controller.abort(), RSVP_TIMEOUT_MS);
+
+      fetch(RSVP_ENDPOINT, { method: 'POST', body: params, signal: controller.signal })
         .then((res) => res.json())
         .then((result) => {
           if (!result || result.result !== 'success') {
@@ -106,12 +118,19 @@ document.addEventListener('DOMContentLoaded', () => {
           rsvpForm.style.display = 'none';
           if (rsvpThanks) rsvpThanks.classList.add('show');
         })
-        .catch(() => {
+        .catch((err) => {
           if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.textContent = 'Send RSVP';
           }
-          if (rsvpError) rsvpError.classList.add('show');
+          if (rsvpError) {
+            rsvpError.textContent = err.name === 'AbortError' ? RSVP_TIMEOUT_MESSAGE : rsvpErrorDefault;
+            rsvpError.classList.add('show');
+          }
+        })
+        .finally(() => {
+          clearTimeout(slowTimer);
+          clearTimeout(abortTimer);
         });
     });
   }
