@@ -176,7 +176,7 @@ p { margin: 0 0 1em; }
   width: calc(var(--name-size) * 10.5);
   max-width: none;
   height: auto;
-  opacity: 0.85;
+  opacity: 0.6;
   pointer-events: none;
   z-index: 0;
 }
@@ -225,7 +225,6 @@ p { margin: 0 0 1em; }
   color: var(--sage);
   margin-top: 0.3rem;
 }
-
 /* ---------- Divider ---------- */
 
 .divider {
@@ -749,3 +748,12 @@ ul.plain li { margin-bottom: 0.5rem; }
 @media (max-width: 720px) {
   .two-col { grid-template-columns: 1fr; }
 }
+
+/* Keep anchored headings clear of the sticky header */
+[id] { scroll-margin-top: 90px; }
+
+.card-link a {
+  color: var(--sage);
+  border-bottom: 1px solid var(--sage-light);
+}
+.card-link a:hover { color: var(--sage-dark); }
